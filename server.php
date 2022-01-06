@@ -8,7 +8,7 @@
             $matchesFiltered[] = $match;
          }
       }
-   } else {
+   }else{
       $matchesFiltered = $matches;
    }
       

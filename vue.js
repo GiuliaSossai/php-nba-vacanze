@@ -1,10 +1,10 @@
 const app = new Vue({
    el: '#app',
    data: {
-      matches: [],
-      cities: [],
       city: '',
       apiURL: 'http://localhost:8888/php-nba-vacanze/server.php?',
+      matches: [],
+      cities: [],
    },
 
    mounted() {
