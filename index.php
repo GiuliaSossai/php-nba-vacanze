@@ -23,66 +23,79 @@ require_once __DIR__ . "/database.php";
          <h1>NBA</h1>
          <h3 class="mx-3">Home</h3>
 
-         <select>
-            <option value="all">Seleziona una città</option>
+         <select 
+            @change="getApi()"
+            class="form-select w-25"
+            id="city"
+            v-model="city"
+         >
+            <option value="" selected>Seleziona una città</option>
+            <option 
+               v-for="city in getCities()"
+               :value="city"
+            >
+            {{city}}
+            </option>
          </select>
       </header>
 
       <!-- main -->
       <main>
          <div class="container">
-            <div 
-               class="row gs-container"
-            >
+            
             <?php foreach($matches as $match) {?>
+            <div 
+               class="row gs-container p-3"
+            >
                <!-- team 1 -->
                <div class="col-5">
                   <div class="row">
                      <!-- name -->
-                     <div class="col-4">
+                     <div class="col-4 d-flex align-items-center">
                         <h5><?php echo $match['home_team']['city'] ?> <?php echo $match['home_team']['nickname'] ?></h5>
                      </div>
 
                      <!-- logo -->
-                     <div class="col-4">
+                     <div class="col-4 d-flex align-items-center">
                         <img src="img/<?php echo $match['home_team']['logo'] ?>">
                      </div>
 
                      <!-- score -->
-                     <div class="col-4">
-                       <h3><?php echo $match['home_team']['score'] ?></h3>
+                     <div class="col-4 d-flex align-items-center">
+                       <h2><?php echo $match['home_team']['score'] ?></h2>
                      </div>
                   </div>
                </div>
 
                <!-- location -->
                <div class="col-2">
-                  <p class="arena m-0"><?php echo $match['arena'] ?></p>
-                  <p class="city m-0"><?php echo $match['city'] ?></p>
+                  <h5 class="text-center"><?php echo $match['arena'] ?></h5>
+                  <p class="text-center"><?php echo $match['city'] ?></p>
                </div>
 
                <!-- team 2 -->
                <div class="col-5">
                   <div class="row">
                      <!-- score -->
-                     <div class="col-4">
-                       <h3><?php echo $match['away_team']['score'] ?></h3>
+                     <div class="col-4 d-flex align-items-center">
+                       <h2><?php echo $match['away_team']['score'] ?></h2>
                      </div>
 
                      <!-- logo -->
-                     <div class="col-4">
+                     <div class="col-4 d-flex align-items-center">
                         <img src="img/<?php echo $match['away_team']['logo'] ?>">
                      </div>
 
                      <!-- name -->
-                     <div class="col-4">
+                     <div class="col-4 d-flex align-items-center">
                         <h5><?php echo $match['away_team']['city'] ?> <?php echo $match['away_team']['nickname'] ?></h5>
                      </div>
                   </div>
                </div>
             
-            <?php } ?>
             </div>
+            <?php } ?>
+            
          </div>
       </main>
    </div>
